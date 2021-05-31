@@ -10,6 +10,7 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
+      title: 'Dashboard | Home',
       layout: 'home',
       breadcrumbs: '/Home'
     }
@@ -19,6 +20,7 @@ const routes = [
     name: 'Site',
     component: () => import(/* webpackChunkName: "about" */ '../views/Site.vue'),
     meta: {
+      title: 'Dashboard | Site',
       layout: 'home',
       breadcrumbs: '/Site'
     }
@@ -28,6 +30,7 @@ const routes = [
     name: 'Orders',
     component: () => import(/* webpackChunkName: "about" */ '../views/Orders.vue'),
     meta: {
+      title: 'Dashboard | Orders',
       layout: 'home',
       breadcrumbs: '/Orders'
     }
@@ -41,6 +44,7 @@ const routes = [
         name: 'Settings',
         component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
         meta: {
+          title: 'Dashboard | Settings',
           layout: 'settings',
           breadcrumbs: '/Settings'
         }
@@ -50,6 +54,7 @@ const routes = [
         name: 'Users',
         component: () => import(/* webpackChunkName: "about" */ '../views/Users.vue'),
         meta: {
+          title: 'Dashboard | Settings - Users',
           layout: 'settings',
           breadcrumbs: '/Settings/Users'
         }
@@ -59,6 +64,7 @@ const routes = [
         name: 'Groups',
         component: () => import(/* webpackChunkName: "about" */ '../views/Groups.vue'),
         meta: {
+          title: 'Dashboard | Settings - Groups',
           layout: 'settings',
           breadcrumbs: '/Settings/Groups'
         }
@@ -71,6 +77,10 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
 
 export default router
