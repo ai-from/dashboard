@@ -8,15 +8,62 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      layout: 'home',
+      breadcrumbs: '/Home'
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/site',
+    name: 'Site',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Site.vue'),
+    meta: {
+      layout: 'home',
+      breadcrumbs: '/Site'
+    }
+  },
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Orders.vue'),
+    meta: {
+      layout: 'home',
+      breadcrumbs: '/Orders'
+    }
+  },
+  {
+    path: '/settings',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Settings',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
+        meta: {
+          layout: 'settings',
+          breadcrumbs: '/Settings'
+        }
+      },
+      {
+        path: 'users',
+        name: 'Users',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Users.vue'),
+        meta: {
+          layout: 'settings',
+          breadcrumbs: '/Settings/Users'
+        }
+      },
+      {
+        path: 'groups',
+        name: 'Groups',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Groups.vue'),
+        meta: {
+          layout: 'settings',
+          breadcrumbs: '/Settings/Groups'
+        }
+      }
+    ]
   }
 ]
 

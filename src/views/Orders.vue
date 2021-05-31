@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.home
-    h1 Home - {{ count.home }}
+  div.orders
+    h1 Orders - {{ count.orders }}
 </template>
 
 <script>
@@ -8,7 +8,7 @@
 import counters from "../mixins/counters";
 
 export default {
-  name: 'Home',
+  name: 'Orders',
   data() {
     return {
       count: 0
@@ -16,9 +16,9 @@ export default {
   },
   mixins: [counters],
   mounted() {
-    this.$store.commit('UPDATE_COUNTERS', 'home')
+    this.$store.commit('UPDATE_COUNTERS', 'orders')
     this.count = this.counters()
-    this.$root.$emit('notify', 'Home')
+    this.$root.$emit('notify', 'Orders')
   }
 }
 </script>
